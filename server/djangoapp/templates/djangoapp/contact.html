@@ -16,13 +16,13 @@
 <nav class="navbar navbar-light bg-light">
 
     <div class="container-fluid">
-            <h1>Dealership Review </h1>
-            <ul class="nav navbar-nav navbar-right">
-                <li>  
+        <ul class="nav navbar-nav navbar-right">
+            <div class="navbar-header">
                 <a class="navbar-brand" href="{% url 'djangoapp:about' %}">about</a>
-           
+            </div>
+            <div class="navbar-header">
                 <a class="navbar-brand" href="{% url 'djangoapp:contact' %}">contact</a>
-            </li>
+            </div>
         
             {% if user.is_authenticated %}
             <li>
@@ -45,15 +45,8 @@
         </ul>
     </div>
 </nav>
-{% if user.is_authenticated %}
-    <body>
-    <!-- Remove this line the first time you edit this file -->
-    
-     This is the index page of your Django app!
-    <!--Add a nav bar here -->
 
-    <!--Add a dealer table here -->
-
-    </body>
-    {% endif %}
+<h1>
+Welcome to Best Cars dealership, home to the best cars in North America. We sell domestic and imported cars at reasonable prices.
+</h1>
 </html>

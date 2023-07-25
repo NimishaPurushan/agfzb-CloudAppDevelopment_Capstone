@@ -34,8 +34,8 @@
                 <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
                     {% csrf_token %}
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Username" name="username" >
-                        <input type="password" class="form-control" placeholder="Username" name="psw" >
+                        <input type="text" class="form-control" placeholder="username" name="username" >
+                        <input type="password" class="form-control" placeholder="password" name="password" >
                         <button class="btn btn-primary" type="submit">Login</button>
                         <a class="btn btn-link" href="{% url 'djangoapp:registration' %}">Sign Up</a>
                     </div>
@@ -45,15 +45,6 @@
         </ul>
     </div>
 </nav>
-{% if user.is_authenticated %}
-    <body>
-    <!-- Remove this line the first time you edit this file -->
-    
-     This is the index page of your Django app!
-    <!--Add a nav bar here -->
 
-    <!--Add a dealer table here -->
 
-    </body>
-    {% endif %}
 </html>

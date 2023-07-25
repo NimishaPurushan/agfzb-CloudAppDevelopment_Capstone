@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render, redirect
-# from .models import related models
+#from .models import User
 # from .restapis import related methods
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
@@ -18,24 +18,58 @@ logger = logging.getLogger(__name__)
 
 
 # Create an `about` view to render a static about page
-# def about(request):
-# ...
+def about(request):
+    context = {}
+    if request.method == "GET":
+        return render(request, 'djangoapp/about.html', context)
 
 
 # Create a `contact` view to return a static contact page
-#def contact(request):
+def contact(request):
+    context = {}
+    if request.method == "GET":
+        return render(request, 'djangoapp/contact.html', context)
 
 # Create a `login_request` view to handle sign in request
-# def login_request(request):
-# ...
+def login_request(request):
+    context = {}
+    if request.method == 'GET':
+        return render(request, 'djangoapp/user_login.html', context)
+    elif request.method == 'POST':
+        username = request.POST["username"]
+        password = request.POST["password"]
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('djangoapp:index')
+        else:
+            context['message'] = "Invalid username or password."
+            return render(request, 'djangoapp/user_login.html', context)
 
 # Create a `logout_request` view to handle sign out request
-# def logout_request(request):
-# ...
+def logout_request(request):
+    logout()
+    return redirect('onlinecourse/user_login.html')
 
 # Create a `registration_request` view to handle sign up request
-# def registration_request(request):
-# ...
+def registration_request(request):
+    context = {}
+    if request.method == 'GET':
+        return render(request, 'djangoapp/user_login.html', context)
+    elif request.method == 'POST':
+        username = request.POST["username"]
+        password = request.POST["password"]
+        first_name = request.POST["first_name"]
+        last_name = request.POST["last_name"]
+        try:
+            User.objects.get(username)
+            context['message'] = "User already exists."
+            return render(request, 'onlinecourse/registration.html', context)
+        except:
+            user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,
+                                            password=password)
+            login(request, user)
+            
 
 # Update the `get_dealerships` view to render the index page with a list of dealerships
 def get_dealerships(request):

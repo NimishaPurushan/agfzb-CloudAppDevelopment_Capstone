@@ -23,7 +23,8 @@
            
                 <a class="navbar-brand" href="{% url 'djangoapp:contact' %}">contact</a>
             </li>
-        
+   
+            
             {% if user.is_authenticated %}
             <li>
                 <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>

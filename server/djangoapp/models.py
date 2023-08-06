@@ -16,6 +16,7 @@ class CarModel(models.Model):
         # Add other choices as needed
     )
 
+
     model_id = models.AutoField(primary_key=True)  # Explicitly defining the primary key as AutoField
     make = models.ForeignKey(CarMake, on_delete=models.CASCADE, related_name='car_models')
     dealer_id = models.IntegerField()

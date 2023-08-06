@@ -29,6 +29,7 @@ class CarModelAdmin(admin.ModelAdmin):
     list_filter = ('type', 'year', 'make')
     search_fields = ('name', 'type', 'year', 'make__name')
 
+
 admin.site.register(CarMake, CarMakeAdmin)
 admin.site.register(CarModel, CarModelAdmin)
 admin.site.register(CarDealer)

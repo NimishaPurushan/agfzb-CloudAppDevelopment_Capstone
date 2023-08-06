@@ -68,7 +68,6 @@ def registration_request(request):
             return redirect('djangoapp:index')
 
             
-
 def get_dealerships(request):
     if request.method == "GET":
         url = "https://us-east.functions.appdomain.cloud/api/v1/web/9103f29e-2898-4270-84f4-08bd82ed47c0/dealership_package/get-dealerships"

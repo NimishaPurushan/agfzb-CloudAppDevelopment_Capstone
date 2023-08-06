@@ -43,27 +43,30 @@ def login_request(request):
 
 # Create a `logout_request` view to handle sign out request
 def logout_request(request):
-    logout()
-    return redirect('onlinecourse/user_login.html')
+    logout(request)
+    return redirect('djangoapp:login')
 
 # Create a `registration_request` view to handle sign up request
 def registration_request(request):
     context = {}
     if request.method == 'GET':
-        return render(request, 'djangoapp/user_login.html', context)
+        return render(request, 'djangoapp/registration.html', context)
     elif request.method == 'POST':
         username = request.POST["username"]
         password = request.POST["password"]
-        first_name = request.POST["first_name"]
-        last_name = request.POST["last_name"]
+        first_name = request.POST["firstname"]
+        last_name = request.POST["lastname"]
         try:
             User.objects.get(username)
+            print("user already exits")
             context['message'] = "User already exists."
-            return render(request, 'onlinecourse/registration.html', context)
+            return redirect('djangoapp:login')
         except:
             user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,
                                             password=password)
             login(request, user)
+            return redirect('djangoapp:index')
+
             
 
 def get_dealerships(request):
